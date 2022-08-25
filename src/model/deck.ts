@@ -28,6 +28,6 @@ export class Deck {
             deck[i] = deck[randomIndex];
             deck[randomIndex] = tempDeck;
         }
-        return this.shuffleDeck(counter -1, deck);
+        return this.shuffleDeck(counter - 1, deck);
     }
 } 
