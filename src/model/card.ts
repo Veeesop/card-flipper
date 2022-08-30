@@ -26,10 +26,10 @@ export class Card {
                 break;
             case 13:
                 this.name = `king_of_${this.suit}`;
-                    break;
+                break;
             case 14:
                 this.name = `ace_of_${this.suit}`;
-                    break;
+                break;
             default:
                 this.name = `${this.sequence}_of_${this.suit}`;
         }

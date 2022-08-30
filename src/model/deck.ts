@@ -29,5 +29,19 @@ export class Deck {
             deck[randomIndex] = tempDeck;
         }
         return this.shuffleDeck(counter - 1, deck);
+    };
+
+    public cardsRemaining = () :number => {
+        return this.cards.length;
+    }
+
+    public drawOffTop = (): Card => {
+        const topCard: Card = JSON.parse(JSON.stringify(this.cards[0]));
+        this.cards.shift();
+        return topCard;
+    }
+
+    public putOnTop = (card: Card): void => {
+        this.cards.unshift(card);
     }
 } 
