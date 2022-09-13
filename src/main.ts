@@ -1,7 +1,7 @@
 import express, {Request, Response} from 'express';
 import cors from 'cors';
 import { Card } from './model/card'
-import { shuffleDeck, NextCard, drawCard } from './controller/deckController';
+import { shuffleDeck, NextCard, drawCard, unflipCard } from './controller/deckController';
 
 const PORT = 3001;
 const app = express();
@@ -59,6 +59,34 @@ app.get('/api/next-card',
                 error: true,
             })
         }
+})
+
+app.put('/api/unflip-card', 
+    (_req: Request, 
+        res: Response<CardResponseObject >):
+        Response<CardResponseObject> => {
+            try {
+                const unflippedCard: NextCard = unflipCard();
+                if(unflippedCard.errorMsg){
+                    return res.send({
+                        msg: unflippedCard.errorMsg,
+                        error: false,
+                        cardData: {cardsRemaining: unflippedCard.cardsRemaining}
+                    })
+                }
+                return res.status(200).send({
+                    msg: 'you put a card back on the pile',
+                    error: false,
+                    cardData: unflippedCard,
+                })
+            } catch (error){
+                console.log(`an error occurred unflipping the next card ${error}`)
+                return res.status(500).send({
+                    msg: `an error occurred unflipping the next card ${error}`,
+                    error: true,
+                })
+        }
+        
 })
 
 

@@ -2,7 +2,7 @@ export enum Suit {
     SPADES = 'spades',
     CLUBS = 'clubs',
     DIAMONDS = 'diamonds',
-    HEARTS = 'HEARTS'
+    HEARTS = 'hearts'
 }
 
 export class Card {

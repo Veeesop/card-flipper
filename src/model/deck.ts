@@ -3,9 +3,12 @@ import { Card, Suit} from './card';
 
 export class Deck {
     private cards: Card[];
+    private isDiscard: boolean;
 
-    constructor() {
+
+    constructor(isDiscard:boolean = false) {
         this.cards = [];
+        this.isDiscard = isDiscard;
     }
 
     private newDeck = (): Card[] => {
@@ -43,5 +46,9 @@ export class Deck {
 
     public putOnTop = (card: Card): void => {
         this.cards.unshift(card);
+    }
+
+    public showTopDiscardPile = (): Card | void => {
+        if(this.isDiscard) return this.cards[0];
     }
 } 

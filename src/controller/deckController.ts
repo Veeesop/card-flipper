@@ -13,9 +13,7 @@ let flipped: Deck;
 export const shuffleDeck = () => {
     deck = new Deck();
     deck.shuffleDeck();
-    flipped = new Deck();
-
-  
+    flipped = new Deck(true);
 }
 
 export const drawCard = (): NextCard => {
@@ -29,7 +27,24 @@ export const drawCard = (): NextCard => {
         flipped.putOnTop(cardDrawn);
 
         return {
-            cardsRemaining:deck.cardsRemaining(),
+            cardsRemaining: deck.cardsRemaining(),
             card: cardDrawn
         }
+}
+
+export const unflipCard = ():NextCard => {
+ if(flipped.cardsRemaining() === 0) {
+    return {
+        errorMsg: "Nothing to back flip, flip away",
+        cardsRemaining: deck.cardsRemaining()
+    }
+ }
+
+    const cardToUnflip: Card = flipped.drawOffTop();
+    deck.putOnTop(cardToUnflip);
+
+    return {
+        cardsRemaining: deck.cardsRemaining(),
+        card: flipped.showTopDiscardPile() as Card,
+    }
 }

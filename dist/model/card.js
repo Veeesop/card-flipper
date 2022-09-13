@@ -6,7 +6,7 @@ var Suit;
     Suit["SPADES"] = "spades";
     Suit["CLUBS"] = "clubs";
     Suit["DIAMONDS"] = "diamonds";
-    Suit["HEARTS"] = "HEARTS";
+    Suit["HEARTS"] = "hearts";
 })(Suit = exports.Suit || (exports.Suit = {}));
 var Card = /** @class */ (function () {
     function Card(suit, sequence) {
